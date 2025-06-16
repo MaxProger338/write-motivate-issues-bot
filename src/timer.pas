@@ -1,12 +1,14 @@
 program timer;
 uses
-	SysUtils, DateUtils, Unix;
+	SysUtils, DateUtils, Unix, crt;
 const
-	interval: int64 = 60 * 1000;
+	interval: int64 = 1 * 1000;
+	filepath: string = 'tmp.txt';
 var
 	start, current: int64;
 	iterationCounter: word = 0;
 	pusherPath: string;
+	myFile: text;
 begin
 	if ParamCount = 0 then
 		halt(1);
@@ -14,7 +16,12 @@ begin
 	pusherPath := ParamStr(1);
 	start := 0;
 
-	while true do
+	{ file }
+	assign(myFile, filepath);
+	reset(myFile);
+	readln(myFile, iterationCounter);
+
+	while not KeyPressed do
 	begin
 		current := DateTimeToUnix(Now) * 1000 + MilliSecondOfTheSecond(Now);
 		
@@ -28,4 +35,9 @@ begin
 			start := current;
 		end;
 	end;
+
+	close(myFile);
+	rewrite(myFile);
+	writeln(myFile, iterationCounter);
+	close(myFile);
 end.

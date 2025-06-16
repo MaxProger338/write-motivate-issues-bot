@@ -1,11 +1,11 @@
 #!/bin/sh
 
-repos_owner="MaxProger338"
-repos=( "test" "test2" )
+repos_owner="K1ngG0r"
+repos=( "2048" )
 
 # Iterate through repos
 for repo in "${repos[@]}"; do
-	title="ХУЙНЯ $1"
+	title="КОД ГОВНО. ЖДУ ИСПРАВЛЕНИЯ МИНУТА $1"
 	url="${repos_owner}/${repo}"
 	body=""
 
